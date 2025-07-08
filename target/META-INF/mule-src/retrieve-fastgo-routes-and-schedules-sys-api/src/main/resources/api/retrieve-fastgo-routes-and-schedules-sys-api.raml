@@ -1,0 +1,63 @@
+#%RAML 1.0
+title: Retrieve-FastGo-Routes-and-Schedules-SYS-API
+description: This raml will fetch Routes and Schedules from FastGo Transport provider
+
+traits:
+  routesTraits: !include /routes/traits/routes-trait.raml
+  schedulesTraits: !include /schedules/traits/schedules-trait.raml
+
+/{transportType}:
+  /{transportCompany}:
+    /routes:
+      is: [routesTraits]
+      get:
+        responses:
+          200:
+            body:
+              application/json:
+                type: !include /routes/dataTypes/routes-dataType.raml
+                example: !include /routes/example/example-200response-file.json
+
+          400:
+            body:
+              application/json:
+                type: !include /common/dataTypes/common-dataType.raml
+                example: !include /common/example/common400-example-file.json
+          404:
+            body:
+              application/json:
+                type: !include /common/dataTypes/common-dataType.raml
+                example: !include /common/example/common404-example-file.json
+          500:
+            body:
+              application/json:
+                type: !include /common/dataTypes/common-dataType.raml
+                example: !include /common/example/common500-example-file.json                    
+
+
+
+    /schedules:
+      is: [schedulesTraits]
+      get:
+        responses:
+          200:
+            body:
+              application/json:
+                type: !include /schedules/dataTypes/schedules-dataType.raml
+                example: !include /schedules/example/example-200response-file.json
+          400:
+            body:
+              application/json:
+                type: !include /common/dataTypes/common-dataType.raml
+                example: !include /common/example/common400-example-file.json
+          404:
+            body:
+              application/json:
+                type: !include /common/dataTypes/common-dataType.raml
+                example: !include /common/example/common404-example-file.json
+          500:
+            body:
+              application/json:
+                type: !include /common/dataTypes/common-dataType.raml
+                example: !include /common/example/common500-example-file.json                                        
+                      
